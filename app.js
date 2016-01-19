@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var about = require('./routes/about/index');
 
 var app = express();
 
@@ -21,9 +22,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(function(req, res, next){
+  res.locals.showTests = app.get('env') !== 'production'  && req.query.test === '1';
+  next();
+})
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/about',about);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
