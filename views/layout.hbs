@@ -2,8 +2,11 @@
 <html>
   <head>
     <title>{{title}}</title>
+      {{#if showTests}}
+          <link rel="stylesheet" href="/vendor/mocha.css">
+      {{/if}}
     <link rel='stylesheet' href='/stylesheets/style.css' />
-      <script src="/javascripts/jquery/jquery-2.1.1.js"></script>
+    <script src="/javascripts/jquery/jquery-2.1.1.js"></script>
   </head>
   <body>
     {{{body}}}
